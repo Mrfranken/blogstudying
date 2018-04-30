@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1> {{ welcome }}</h1>
+    <ul>
+        {% for item in post_list %}
+        <li> {{ item }} </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

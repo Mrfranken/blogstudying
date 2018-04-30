@@ -15,8 +15,10 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Post(models.Model):
-    title = models.CharField(max_length=70)
+    #verbose_name用来指定显示的标题，原生的会显示为 "TITLE"
+    title = models.CharField(max_length=70, verbose_name='标题')
     body = models.TextField()
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
@@ -27,3 +29,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
