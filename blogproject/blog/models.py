@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse #注意这里不同版本reverse所在包可能不同
 
 
 class Category(models.Model):
