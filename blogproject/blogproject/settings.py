@@ -65,6 +65,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'blog_tags': 'blog.templatetags.blog_tags',
+            }
         },
     },
 ]
@@ -109,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
+
 LANGUAGE_CODE = 'zh-hans' #'en-us'
 
 TIME_ZONE = 'Asia/Shanghai' #'UTC'
@@ -117,7 +121,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -127,4 +131,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static/blog/'),
+    # os.path.join(BASE_DIR, 'static/templatetags/')
 ]
+
+# Blog_TAG_URL = '/blog/'
+# BlogTAGFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'blog/templatetags/')
+# ]
