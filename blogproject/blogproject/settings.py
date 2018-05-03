@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'comments',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,10 +132,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static/blog/'),
-    # os.path.join(BASE_DIR, 'static/templatetags/')
 ]
 
-# Blog_TAG_URL = '/blog/'
-# BlogTAGFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'blog/templatetags/')
-# ]
