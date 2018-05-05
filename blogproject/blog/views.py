@@ -1,19 +1,24 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Category
+from comments.forms import CommentForm
 import markdown
 
 
 def index(request):
     # return HttpResponse("欢迎访问我的博客首页!")
 
-    post_list = Post.objects.all().order_by('-created_time')
+    post_list = Post.objects.all() #.order_by('-created_time')
     context = {
         'title': '我的博客首页',
         'welcome': '欢迎访问我的博客首页',
         'post_list': post_list
     }
     return render(request, 'blog/index.html', context=context)
+
+
+def about(request):
+    return render(request, 'blog/about.html')
 
 
 def detail(request, pk):
@@ -30,15 +35,23 @@ def detail(request, pk):
                                   extensions=['markdown.extensions.extra',
                                               'markdown.extensions.codehilite',
                                               'markdown.extensions.toc'])
-    return render(request, 'blog/detail.html', context={'post': post})
+    post.increase_views()
+    form = CommentForm()
+    comment_list = post.comment_set.all()
+    context = {'post': post,
+               'form': form,
+               'comment_list': comment_list
+               }
+    return render(request, 'blog/detail.html', context=context)
 
 def archives(request, year, month):
     post_list = Post.objects.filter(created_time__year=year,
-                                    created_time__month=month).order_by("-created_time")
+                                    created_time__month=month)
     return render(request, 'blog/index.html', context={"post_list": post_list})
 
 
 def category(request, category_id):
-    post_list = Post.objects.filter(category_id=category_id).order_by("-created_time")
+    cate = get_object_or_404(Category, pk=category_id)
+    post_list = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={"post_list": post_list})
 
