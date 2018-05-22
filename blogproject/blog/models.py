@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse #注意这里不同版本reverse所在包可能不同
 import markdown
 from django.utils.html import strip_tags
+from tinymce.models import HTMLField
 
 
 class Category(models.Model):
@@ -22,7 +23,8 @@ class Tag(models.Model):
 class Post(models.Model):
     # verbose_name用来指定显示的标题，原生的会显示为 "TITLE"
     title = models.CharField(max_length=70, verbose_name='标题')
-    body = models.TextField()
+    # body = models.TextField()
+    body = HTMLField()
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
     excerpt = models.CharField(max_length=200, blank=True)
